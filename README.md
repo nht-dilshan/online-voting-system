@@ -68,8 +68,7 @@ The Online Voting System is a secure web-based platform that allows registered u
     ```
 5. **Create a Pull Request** to merge into the main branch.
 
-## License
-This project is licensed under the MIT License.
+
 
 ## Contact
 For questions or suggestions, please reach out to the project team.

@@ -1,74 +1,24 @@
 # Online Voting System
 
-## Project Description
-The Online Voting System is a secure web-based platform that allows registered users to cast a vote and administrators to manage candidates and view voting results. Built using **React**, **JSP**, and **MySQL**, the system ensures fair voting, secure data handling, and reliable result tracking.
+## Project Overview
+The Online Voting System is a secure web-based application that enables users to register, log in, and cast votes digitally. Admins can manage candidates and view voting results. This system is developed using HTML, JSP, and MySQL, focusing on data security, usability, and accurate vote tracking.
 
 ## Features
-### User Features
-- **Register** and **log in** securely.
-- **Cast a vote** for a candidate of choice (one vote per user).
-- **View voting confirmation** after voting.
+- **User Registration**: Users can create an account to participate in voting.
+- **User Login**: Secure login for registered users to access voting.
+- **Voting Functionality**: Users can view candidates and cast their votes.
+- **Admin Dashboard**: Admins can add, remove, and manage candidates, and view voting results.
+- **Data Security**: User passwords are securely hashed, and the system is protected against common vulnerabilities.
 
-### Admin Features
-- **Add or remove candidates** from the election.
-- **View real-time voting results** with candidate vote counts.
-
-## Project Structure
-- **Frontend**: React for user interface components.
-- **Backend**: JSP to handle server-side logic and MySQL for database management.
-- **Database**: MySQL tables to store user, candidate, and voting data securely.
-
-## Tech Stack
-- **Frontend**: React
-- **Backend**: JSP
+## Technologies Used
+- **Frontend**: HTML, CSS
+- **Backend**: JSP (JavaServer Pages)
 - **Database**: MySQL
 
-## Installation and Setup
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-username/online-voting-system.git
-    cd online-voting-system
-    ```
+## Installation
+To set up the Online Voting System locally, follow these steps:
 
-2. **Frontend Setup**:
-    - Navigate to the `frontend` directory.
-    - Install dependencies:
-      ```bash
-      npm install
-      ```
-    - Start the frontend:
-      ```bash
-      npm start
-      ```
-
-3. **Backend Setup**:
-    - Place JSP files on a server (e.g., Tomcat).
-    - Set up MySQL with tables for Users, Candidates, and Votes.
-
-4. **Database Setup**:
-    - Run the provided SQL script (`database.sql`) to create the database and tables.
-
-## Usage
-- **User**: Register or log in, then navigate to the voting page to cast a vote.
-- **Admin**: Log in to manage candidates and view results on the admin dashboard.
-
-## Contributing
-1. **Fork** the repository.
-2. **Create a branch** for your feature:
-    ```bash
-    git checkout -b feature-name
-    ```
-3. **Commit changes**:
-    ```bash
-    git commit -m "Add your message"
-    ```
-4. **Push** to the branch:
-    ```bash
-    git push origin feature-name
-    ```
-5. **Create a Pull Request** to merge into the main branch.
-
-
-
-## Contact
-For questions or suggestions, please reach out to the project team.
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/online-voting-system.git
+   cd online-voting-system

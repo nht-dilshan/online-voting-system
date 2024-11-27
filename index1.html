@@ -6,41 +6,139 @@
   <title>Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex">
+<body class="flex h-screen">
 
   <!-- Sidebar -->
   <div class="bg-white shadow-lg h-screen w-64 fixed">
     <div class="p-6">
-      <a href="index.html" class="font-bold text-lg text-gray-800">Sectify</a>
+      <a href="#" class="font-bold text-lg text-gray-800">Sectify</a>
     </div>
     <nav class="mt-6">
-      <div class="px-6 py-3 hover:bg-gray-100">
-        <a href="index.html" class="flex items-center text-gray-600">
+      <div class="px-6 py-3 bg-gray-300 rounded-md">
+        <a href="index1.html" class="flex items-center">
           <span class="ml-3">Home</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-100">
-        <a href="poll.html" class="flex items-center text-gray-600">
+      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
+        <a href="poll.html" class="flex items-center">
           <span class="ml-3">Poll</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-100">
-        <a href="about.html" class="flex items-center text-gray-600">
-          <span class="ml-3">About Us</span>
+      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
+        <a href="Resalt.html" class="flex items-center">
+          <span class="ml-3">Resalt</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-100">
-        <a href="profile.html" class="flex items-center text-gray-600">
+      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
+        <a href="profile.html" class="flex items-center">
           <span class="ml-3">Profile</span>
+        </a>
+      </div>
+      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
+        <a href="about.html" class="flex items-center">
+          <span class="ml-3">About Us</span>
         </a>
       </div>
     </nav>
   </div>
 
   <!-- Main Content -->
-  <div class="ml-64 p-6">
-    <h1 class="text-2xl font-bold">Welcome to the Home Page</h1>
-    <p>This is the main content area of the home page.</p>
+  <div class="ml-64 w-full min-h-screen p-6">
+    <div class="bg-white p-8 rounded-lg shadow-md mx-auto">
+      <div class="flex items-center mb-8">
+        <img src="voter-image.jpg" alt="Voter Image" class="w-20 h-20 rounded-full mr-4">
+        <div>
+          <h2 class="text-lg font-medium">JOHN DOE FEDOLA</h2>
+          <p class="text-gray-500">5447 C4C9 3737 8896 432</p>
+          <p class="text-gray-500">12-03-1980</p>
+          <p class="text-gray-500">PRODUCT DESIGNER</p>
+          <p class="text-gray-500">4140 Parker Rd, Allentown, New Mexico</p>
+          <a href="poll.html" class="bg-green-500 text-white px-4 py-2 rounded-md mt-2 inline-block">Start voting</a>
+        </div>
+      </div>
+  
+      <div class="grid grid-cols-2 gap-8">
+        <!-- Presidential candidates -->
+        <div>
+          <h3 class="text-lg font-medium mb-4">Top 4 Presidential candidate 2023 (by vote)</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span>Bola Tinubu</span>
+            <div class="bg-green-500 text-white px-4 py-1 rounded-md">7,420,566 (40%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Peter Obi</span>
+            <div class="bg-red-500 text-white px-4 py-1 rounded-md">720,566 (20%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Sowore Omoyele</span>
+            <div class="px-4 py-1 rounded-md">80,566 (10%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Imuedon Christopher</span>
+            <div class="bg-green-500 text-white px-4 py-1 rounded-md">6,607 (2%)</div>
+          </div>
+        </div>
+        
+        <!-- Leading parties -->
+        <div>
+          <h3 class="text-lg font-medium mb-4">Top 3 leading parties across the federation</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span>APC</span>
+            <div class="bg-blue-500 text-white px-4 py-1 rounded-md">80%</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Labour Party (LP)</span>
+            <div class="bg-gray-500 text-white px-4 py-1 rounded-md">60%</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>PDP</span>
+            <div class="bg-red-500 text-white px-4 py-1 rounded-md">40%</div>
+          </div>
+        </div>
+        
+        <!-- Lagos Gubernatorial candidates -->
+        <div>
+          <h3 class="text-lg font-medium mb-4">Top 4 Lagos Gubernatorial candidate 2023 (by vote)</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span>Babajide Sanwo-Olu</span>
+            <div class="bg-green-500 text-white px-4 py-1 rounded-md">7,420,566 (40%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Rhodes-Vivour</span>
+            <div class="bg-green-500 text-white px-4 py-1 rounded-md">720,566 (30%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Tuale Ayewole</span>
+            <div class="px-4 py-1 rounded-md">90,566 (20%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Ifagbemile Christopher</span>
+            <div class="bg-green-500 text-white px-4 py-1 rounded-md">2,609 (2%)</div>
+          </div>
+        </div>
+
+        <!-- Alimosho House of Rep candidates -->
+        <div>
+          <h3 class="text-lg font-medium mb-4">Top 4 Alimosho House of rep candidate 2023</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span>George Bant</span>
+            <div class="bg-red-500 text-white px-4 py-1 rounded-md">7,420,566 (50%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>John Olise</span>
+            <div class="bg-green-500 text-white px-4 py-1 rounded-md">2,609,102 (31%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Bankole Wellington</span>
+            <div class="px-4 py-1 rounded-md">80,650 (10%)</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span>Munaini Ada</span>
+            <div class="bg-green-500 text-white px-4 py-1 rounded-md">7,205 (30%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </body>

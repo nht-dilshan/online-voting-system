@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up Page</title>
+  <title>Contact Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-800 to-gray-700 relative">
@@ -14,127 +14,92 @@
   </div>
 
   <!-- Card Container -->
-  <div class="relative w-full max-w-md mx-4">
-    <!-- Sign Up Card -->
+  <div class="relative w-full max-w-lg mx-4">
+    <!-- Contact Card -->
     <div class="bg-white rounded-xl shadow-2xl p-8">
-      <!-- Logo/Title -->
+      <!-- Title -->
       <h1 class="text-emerald-500 text-4xl font-bold text-center mb-4">
-        SECTIFY
+        Contact Us
       </h1>
 
       <!-- Subtitle -->
       <p class="text-gray-500 text-center mb-6">
-        Join us and start your journey today.
+        We'd love to hear from you! Fill out the form below and we'll get back to you.
       </p>
 
       <!-- Form -->
-      <form class="space-y-6" onsubmit="handleSubmit(event)">
+      <form class="space-y-6" onsubmit="handleContactSubmit(event)">
         <!-- Full Name Field -->
         <div class="space-y-1">
           <label class="block text-gray-600 text-sm font-medium">
-            Full name
+            Full Name
           </label>
           <input
             type="text"
             name="fullName"
             placeholder="Enter your full name"
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            required
           />
         </div>
 
         <!-- Email Field -->
         <div class="space-y-1">
           <label class="block text-gray-600 text-sm font-medium">
-            Email address
+            Email Address
           </label>
           <input
             type="email"
             name="email"
             placeholder="Enter your email"
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            required
           />
         </div>
 
-        <!-- Password Field -->
-        <div class="space-y-1 relative">
+        <!-- Subject Field -->
+        <div class="space-y-1">
           <label class="block text-gray-600 text-sm font-medium">
-            Password
+            Subject
           </label>
           <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter your password"
+            type="text"
+            name="subject"
+            placeholder="Enter the subject"
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
-          <button
-            type="button"
-            onclick="togglePasswordVisibility('password', 'password-icon')"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-          >
-            <span id="password-icon" class="material-icons">visibility</span>
-          </button>
         </div>
 
-        <!-- Confirm Password Field -->
-        <div class="space-y-1 relative">
+        <!-- Message Field -->
+        <div class="space-y-1">
           <label class="block text-gray-600 text-sm font-medium">
-            Confirm Password
+            Message
           </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="Re-enter your password"
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Type your message here..."
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          />
-          <button
-            type="button"
-            onclick="togglePasswordVisibility('confirmPassword', 'confirmPassword-icon')"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-          >
-            <span id="confirmPassword-icon" class="material-icons">visibility</span>
-          </button>
+            required
+          ></textarea>
         </div>
 
-        <!-- Sign Up Button -->
+        <!-- Submit Button -->
         <button
           type="submit"
           class="w-full bg-emerald-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-emerald-600 transition-colors duration-300"
         >
-          Sign up
+          Send Message
         </button>
-
-        <!-- Already Have an Account -->
-        <div class="text-center text-sm">
-          <span class="text-gray-500">Already have an account? </span>
-          <a href="Sign_In.html" class="text-emerald-500 hover:text-emerald-600">
-            Sign in
-          </a>
-        </div>
       </form>
     </div>
   </div>
 
   <script>
-    // Function to toggle password visibility for specific fields
-    function togglePasswordVisibility(fieldId, iconId) {
-      const passwordInput = document.getElementById(fieldId);
-      const passwordIcon = document.getElementById(iconId);
-
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        passwordIcon.textContent = 'visibility_off';
-      } else {
-        passwordInput.type = 'password';
-        passwordIcon.textContent = 'visibility';
-      }
-    }
-
-    // Function to handle form submission
-    function handleSubmit(event) {
+    function handleContactSubmit(event) {
       event.preventDefault();
-      console.log('Form submitted');
+      console.log('Contact form submitted');
+
     }
   </script>
 </body>

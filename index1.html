@@ -9,33 +9,33 @@
 <body class="flex h-screen bg-gray-100">
 
   <!-- Sidebar -->
-  <div class="bg-white shadow-lg h-screen w-64 fixed">
+  <div class="bg-white shadow-lg h-full w-64 fixed flex flex-col">
     <div class="p-6">
-      <a href="home.html" class="font-bold text-xl text-gray-800">Sectify</a>
+      <a href="home.html" class="font-bold text-lg text-emerald-500">VoteStream</a>
     </div>
-    <nav class="mt-6">
-      <div class="px-6 py-3 bg-gray-300 rounded-md">
-        <a href="index1.html" class="flex items-center">
+    <nav class="mt-6 flex-grow">
+      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
+        <a href="index1.html" class="flex items-center text-gray-700 hover:text-emerald-500">
           <span class="ml-3">Home</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
-        <a href="poll.html" class="flex items-center">
+      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
+        <a href="poll.html" class="flex items-center text-gray-700 hover:text-emerald-500">
           <span class="ml-3">Poll</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
-        <a href="Resalt.html" class="flex items-center">
+      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
+        <a href="Resalt.html" class="flex items-center text-gray-700 hover:text-emerald-500">
           <span class="ml-3">Results</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
-        <a href="profile.html" class="flex items-center">
+      <div class="px-6 py-3 bg-gray-300 cursor-pointer">
+        <a href="profile.html" class="flex items-center text-gray-700">
           <span class="ml-3">Profile</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-300 rounded-md">
-        <a href="about.html" class="flex items-center">
+      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
+        <a href="about.html" class="flex items-center text-gray-700 hover:text-emerald-500">
           <span class="ml-3">About Us</span>
         </a>
       </div>
@@ -48,12 +48,8 @@
     <!-- Profile Section -->
     <div class="bg-white p-8 rounded-lg shadow-lg text-center w-full max-w-5xl">
       <div class="flex flex-col items-center">
-        <img src="./assets/profile.jpg" alt="Voter Image" class="w-28 h-28 rounded-full mb-4 border-4 border-gray-200">
         <h2 class="text-2xl font-bold mb-2 text-gray-800">JOHN DOE FEDOLA</h2>
-        <p class="text-gray-600 text-lg">5447 C4C9 3737 8896 432</p>
-        <p class="text-gray-600 text-lg">12-03-1980</p>
-        <p class="text-gray-600 text-lg">PRODUCT DESIGNER</p>
-        <p class="text-gray-600 text-lg mb-4">4140 Parker Rd, Allentown, New Mexico</p>
+        <img src="./assets/profile.jpg" alt="Voter Image" class="w-28 h-28 rounded-full mb-4 border-4 border-gray-200 object-cover">
         <a href="poll.html" class="bg-green-500 text-white px-6 py-2 rounded-md text-lg font-medium hover:bg-green-600 shadow">Start Voting</a>
       </div>
     </div>

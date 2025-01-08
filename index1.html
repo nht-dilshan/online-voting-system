@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Admin Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex h-screen bg-gray-100">
+<body class="flex flex-col md:flex-row h-screen bg-gray-100">
 
   <!-- Sidebar -->
-  <div class="bg-white shadow-lg h-full w-64 fixed flex flex-col">
+  <div class="bg-white shadow-lg h-full w-full md:w-64 fixed md:relative flex flex-col">
     <div class="p-6">
       <a href="home.html" class="font-bold text-lg text-emerald-500">VoteStream</a>
     </div>
     <nav class="mt-6 flex-grow">
-      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
-        <a href="index1.html" class="flex items-center text-gray-700 hover:text-emerald-500">
+      <div class="px-6 py-3 bg-gray-300 cursor-pointer">
+        <a href="index1.html" class="flex items-center text-gray-700">
           <span class="ml-3">Home</span>
         </a>
       </div>
@@ -25,12 +25,12 @@
         </a>
       </div>
       <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
-        <a href="Resalt.html" class="flex items-center text-gray-700 hover:text-emerald-500">
+        <a href="Result.html" class="flex items-center text-gray-700 hover:text-emerald-500">
           <span class="ml-3">Results</span>
         </a>
       </div>
-      <div class="px-6 py-3 bg-gray-300 cursor-pointer">
-        <a href="profile.html" class="flex items-center text-gray-700">
+      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
+        <a href="profile.html" class="flex items-center text-gray-700 hover:text-emerald-500">
           <span class="ml-3">Profile</span>
         </a>
       </div>
@@ -43,56 +43,66 @@
   </div>
 
   <!-- Main Content -->
-  <div class="ml-64 w-full min-h-screen flex flex-col items-center p-8">
-    
-    <!-- Profile Section -->
-    <div class="bg-white p-8 rounded-lg shadow-lg text-center w-full max-w-5xl">
-      <div class="flex flex-col items-center">
-        <h2 class="text-2xl font-bold mb-2 text-gray-800">JOHN DOE FEDOLA</h2>
-        <img src="./assets/profile.jpg" alt="Voter Image" class="w-28 h-28 rounded-full mb-4 border-4 border-gray-200 object-cover">
-        <a href="poll.html" class="bg-green-500 text-white px-6 py-2 rounded-md text-lg font-medium hover:bg-green-600 shadow">Start Voting</a>
-      </div>
-    </div>
+  <div class="w-full flex flex-col items-center p-4 md:p-8 justify-center h-full">
+    <div class="w-full max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg h-full overflow-auto ">
+        <h1 class="text-3xl font-bold mb-4 text-gray-800">Hello, Udith!</h1>
+        <p class="text-gray-500 mb-6">Welcome to Votely's Online Voting System</p>
 
-    <!-- Statistics Section -->
-    <div class="grid grid-cols-2 gap-8 mt-8 w-full max-w-5xl">
-      <!-- Presidential candidates -->
-      <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold mb-4 text-gray-700">Top 4 Presidential Candidates 2023 (by vote)</h3>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-lg text-gray-600">Bola Tinubu</span>
-          <div class="bg-green-500 text-white px-4 py-1 rounded-md shadow">7,420,566 (40%)</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="text-sm font-semibold text-gray-600">Total Registered Voters</p>
+                <h2 class="text-4xl font-bold">362</h2>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="text-sm font-semibold text-gray-600">Total Votes Cast</p>
+                <h2 class="text-4xl font-bold">344</h2>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="text-sm font-semibold text-gray-600">Registered Candidates</p>
+                <h2 class="text-4xl font-bold">3</h2>
+            </div>
         </div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-lg text-gray-600">Peter Obi</span>
-          <div class="bg-red-500 text-white px-4 py-1 rounded-md shadow">720,566 (20%)</div>
-        </div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-lg text-gray-600">Sowore Omoyele</span>
-          <div class="bg-gray-300 text-gray-700 px-4 py-1 rounded-md shadow">80,566 (10%)</div>
-        </div>
-        <div class="flex items-center justify-between">
-          <span class="text-lg text-gray-600">Imuedon Christopher</span>
-          <div class="bg-green-500 text-white px-4 py-1 rounded-md shadow">6,607 (2%)</div>
-        </div>
-      </div>
 
-      <!-- Leading parties -->
-      <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold mb-4 text-gray-700">Top 3 Leading Parties Across the Federation</h3>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-lg text-gray-600">APC</span>
-          <div class="bg-blue-500 text-white px-4 py-1 rounded-md shadow">80%</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-bold">President Student Council</h2>
+                <p class="text-sm text-gray-500">Ongoing Election</p>
+                <button class="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-lg">Vote now</button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-bold">Calendar</h2>
+                <p class="mt-2 text-sm text-gray-500">Today</p>
+                <p class="text-lg font-semibold">December 22</p>
+                <p class="text-sm text-gray-500">President Student Council</p>
+            </div>
         </div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-lg text-gray-600">Labour Party (LP)</span>
-          <div class="bg-gray-500 text-white px-4 py-1 rounded-md shadow">60%</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-bold">Live Results</h2>
+                <!-- Placeholder for graph -->
+                <div class="h-32 bg-gray-200 flex items-center justify-center rounded-lg">
+                    <p class="text-gray-500">Graph Placeholder</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-bold">Election Activities</h2>
+                <ul class="mt-2 space-y-2">
+                    <li class="flex justify-between">
+                        <span>President Student Council</span>
+                        <span class="text-gray-500">Ongoing</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Vice President Student Council</span>
+                        <span class="text-gray-500">Pending</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Secretary Student Council</span>
+                        <span class="text-gray-500">Concluded</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="flex items-center justify-between">
-          <span class="text-lg text-gray-600">PDP</span>
-          <div class="bg-red-500 text-white px-4 py-1 rounded-md shadow">40%</div>
-        </div>
-      </div>
     </div>
   </div>
 

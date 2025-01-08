@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Single Page Application</title>
+  <title>2023 Presidential Election Result</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex bg-gray-100 font-sans">
@@ -24,13 +24,13 @@
           <span class="ml-3">Poll</span>
         </a>
       </div>
-      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
-        <a href="Resalt.html" class="flex items-center text-gray-700 hover:text-emerald-500">
+      <div class="px-6 py-3 bg-gray-300 cursor-pointer">
+        <a href="Result.html" class="flex items-center text-gray-700">
           <span class="ml-3">Results</span>
         </a>
       </div>
-      <div class="px-6 py-3 bg-gray-300 cursor-pointer">
-        <a href="profile.html" class="flex items-center text-gray-700">
+      <div class="px-6 py-3 hover:bg-gray-300 cursor-pointer">
+        <a href="profile.html" class="flex items-center text-gray-700 hover:text-emerald-500">
           <span class="ml-3">Profile</span>
         </a>
       </div>
@@ -43,10 +43,10 @@
   </div>
 
   <!-- Main Content -->
-  <div id="main-content" class="ml-64 p-6">
+  <div id="main-content" class="ml-64 p-6 w-full">
     <div class="container mx-auto">
       <!-- Title Section -->
-      <h1 class="text-2xl font-bold mb-6">2023 Presidential Election Result</h1>
+      <h1 class="text-3xl font-bold mb-6 text-gray-800">2023 Presidential Election Result</h1>
       
       <!-- Card Section -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
@@ -76,7 +76,7 @@
       </div>
 
       <!-- Table Section -->
-      <div>
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6">
         <div class="grid grid-cols-4 gap-4 items-center mb-4 text-gray-500 font-medium">
           <div>Aspirant</div>
           <div>Party logo</div>
@@ -99,6 +99,19 @@
             <div><img src="https://via.placeholder.com/40x40" alt="Party logo" class="w-10 h-10"></div>
             <div>Labour Party (LP)</div>
             <div class="text-right">6,745,001 (35%)</div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center border-b py-2">
+            <div>Atiku Abubakar</div>
+            <div><img src="https://via.placeholder.com/40x40" alt="Party logo" class="w-10 h-10"></div>
+            <div>People's Democratic Party (PDP)</div>
+            <div class="text-right">5,678,901 (25%)</div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-4 items-center border-b py-2">
+            <div>Rabiu Kwankwaso</div>
+            <div><img src="https://via.placeholder.com/40x40" alt="Party logo" class="w-10 h-10"></div>
+            <div>New Nigeria Peoples Party (NNPP)</div>
+            <div class="text-right">1,234,567 (10%)</div>
           </div>
         </div>
       </div>

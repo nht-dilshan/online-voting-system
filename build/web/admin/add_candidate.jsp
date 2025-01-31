@@ -7,113 +7,202 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Candidate</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class="bg-gray-100 font-sans p-8">
-    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4">Add New Candidate</h1>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
 
-        <!-- Display success or error message -->
-        <% 
-            String message = "";
-            String messageClass = "text-gray-700"; // Default text color
-            if ("POST".equalsIgnoreCase(request.getMethod())) {
-                String candidateName = request.getParameter("candidate_name");
-                String partyName = request.getParameter("party_name");
-                String description = request.getParameter("description");
-                int electionId = Integer.parseInt(request.getParameter("election_id"));
+    <div class="w-full max-w-2xl bg-white shadow-2xl rounded-xl overflow-hidden">
+        <div class="bg-emerald-600 text-white p-6">
+            <h1 class="text-3xl font-bold">Add New Candidate</h1>
+        </div>
 
-                Connection con = null;
-                PreparedStatement ps = null;
-                try {
-                    con = db_connector.getConnection();
-                    String query = "INSERT INTO candidates (name, party_name, description, election_id) VALUES (?, ?, ?, ?)";
-                    ps = con.prepareStatement(query);
-                    ps.setString(1, candidateName);
-                    ps.setString(2, partyName);
-                    ps.setString(3, description);
-                    ps.setInt(4, electionId);
-
-                    int result = ps.executeUpdate();
-
-                    if (result > 0) {
-                        message = "Candidate added successfully!";
-                        messageClass = "text-green-500"; // Success message color
-                    } else {
-                        message = "Error adding candidate.";
-                        messageClass = "text-red-500"; // Error message color
+        <div class="p-8">
+            <%
+                String message = "";
+                String messageType = ""; // Will be used for SweetAlert
+                if ("POST".equalsIgnoreCase(request.getMethod())) {
+                    String candidateName = request.getParameter("candidate_name");
+                    String partyName = request.getParameter("party_name");
+                    String description = request.getParameter("description");
+                    int electionId = 0;
+                    
+                    try {
+                        electionId = Integer.parseInt(request.getParameter("election_id"));
+                    } catch (NumberFormatException e) {
+                        message = "Please select a valid election.";
+                        messageType = "error";
                     }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    message = "Error: " + e.getMessage();
-                    messageClass = "text-red-500"; // Error message color
-                } finally {
-                    try { if (ps != null) ps.close(); } catch (SQLException e) { e.printStackTrace(); }
-                    try { if (con != null) con.close(); } catch (SQLException e) { e.printStackTrace(); }
-                }
-            }
-        %>
-        
-        <!-- Display the message -->
-        <p class="<%= messageClass %> mb-4"><%= message %></p>
 
-        <form action="add_candidate.jsp" method="post">
-            <div class="mb-4">
-                <label class="block text-gray-700">Candidate Name</label>
-                <input type="text" name="candidate_name" class="w-full p-2 border border-gray-300 rounded mt-2" required>
-            </div>
-
-            <!-- Dropdown for Party Name -->
-            <div class="mb-4">
-                <label class="block text-gray-700">Party Name</label>
-                <select name="party_name" class="w-full p-2 border border-gray-300 rounded mt-2" required>
-                    <option value="">Select a Party</option>
-                    <option value="Party1">Party1</option>
-                    <option value="Party2">Party2</option>
-                    <option value="Party3">Party3</option>
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label class="block text-gray-700">Description</label>
-                <textarea name="description" rows="4" class="w-full p-2 border border-gray-300 rounded mt-2"></textarea>
-            </div>
-
-            <!-- Dropdown for Election Selection -->
-            <div class="mb-4">
-                <label class="block text-gray-700">Election</label>
-                <select name="election_id" class="w-full p-2 border border-gray-300 rounded mt-2" required>
-                    <option value="">Select an Election</option>
-                    <%
-                        Connection con = null;
-                        PreparedStatement ps = null;
-                        ResultSet rs = null;
-                        try {
-                            con = db_connector.getConnection();
-                            String query = "SELECT election_id, `election name` FROM elections";
-                            ps = con.prepareStatement(query);
-                            rs = ps.executeQuery();
-                            while (rs.next()) {
-                                int electionId = rs.getInt("election_id");
-                                String electionName = rs.getString("election name");
-                    %>
-                                <option value="<%= electionId %>"><%= electionName %></option>
-                    <%
-                            }
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        } finally {
-                            try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
-                            try { if (ps != null) ps.close(); } catch (SQLException e) { e.printStackTrace(); }
-                            try { if (con != null) con.close(); } catch (SQLException e) { e.printStackTrace(); }
+                    Connection con = null;
+                    PreparedStatement ps = null;
+                    try {
+                        con = db_connector.getConnection();
+                        
+                        // Validate inputs
+                        if (candidateName == null || candidateName.trim().isEmpty()) {
+                            throw new SQLException("Candidate name cannot be empty");
                         }
-                    %>
-                </select>
-            </div>
+                        
+                        if (partyName == null || partyName.trim().isEmpty()) {
+                            throw new SQLException("Please select a party");
+                        }
 
-            <button type="submit" class="bg-emerald-500 text-white px-4 py-2 rounded hover:bg-emerald-600">Add Candidate</button>
-        </form>
+                        String query = "INSERT INTO candidates (name, party_name, description, election_id) VALUES (?, ?, ?, ?)";
+                        ps = con.prepareStatement(query);
+                        ps.setString(1, candidateName.trim());
+                        ps.setString(2, partyName);
+                        ps.setString(3, description != null ? description.trim() : "");
+                        ps.setInt(4, electionId);
 
-        <a href="CandidateManagement.jsp" class="text-blue-500 mt-4 inline-block">Back to Candidate Management</a>
+                        int result = ps.executeUpdate();
+
+                        if (result > 0) {
+                            message = "Candidate added successfully!";
+                            messageType = "success";
+                        } else {
+                            message = "Error adding candidate.";
+                            messageType = "error";
+                        }
+                    } catch (SQLException e) {
+                        message = "Error: " + e.getMessage();
+                        messageType = "error";
+                    } finally {
+                        try { 
+                            if (ps != null) ps.close(); 
+                            if (con != null) con.close(); 
+                        } catch (SQLException e) { 
+                            e.printStackTrace(); 
+                        }
+                    }
+                }
+            %>
+
+            <form id="candidateForm" action="add_candidate.jsp" method="post" class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Candidate Name</label>
+                    <input type="text" name="candidate_name" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                           placeholder="Enter candidate's full name" 
+                           required
+                           maxlength="100">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Party Name</label>
+                    <select name="party_name" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                            required>
+                        <option value="">Select Political Party</option>
+                        <option value="Democratic Party">Democratic Party</option>
+                        <option value="Republican Party">Republican Party</option>
+                        <option value="Independent">Independent</option>
+                        <option value="Green Party">Green Party</option>
+                        <option value="Libertarian Party">Libertarian Party</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Description</label>
+                    <textarea name="description" 
+                              rows="4" 
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                              placeholder="Brief candidate biography or platform summary"
+                              maxlength="500"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Election</label>
+                    <select name="election_id" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                            required>
+                        <option value="">Select Election</option>
+                        <%
+                            Connection con = null;
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            try {
+                                con = db_connector.getConnection();
+                                String query = "SELECT election_id, `election name` FROM elections ORDER BY election_date";
+                                ps = con.prepareStatement(query);
+                                rs = ps.executeQuery();
+                                while (rs.next()) {
+                                    int electionId = rs.getInt("election_id");
+                                    String electionName = rs.getString("election name");
+                        %>
+                                    <option value="<%= electionId %>"><%= electionName %></option>
+                        <%
+                                }
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            } finally {
+                                try { 
+                                    if (rs != null) rs.close(); 
+                                    if (ps != null) ps.close(); 
+                                    if (con != null) con.close(); 
+                                } catch (SQLException e) { 
+                                    e.printStackTrace(); 
+                                }
+                            }
+                        %>
+                    </select>
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <button type="submit" 
+                            class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition duration-300 transform hover:scale-105">
+                        Add Candidate
+                    </button>
+                    <a href="CandidateManagement.jsp" 
+                       class="text-emerald-600 hover:underline">Back to Candidate Management</a>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <script>
+        // Use SweetAlert for displaying messages
+        <% if (!message.isEmpty()) { %>
+            Swal.fire({
+                icon: '<%= messageType %>',
+                title: '<%= messageType.equals("success") ? "Success!" : "Error" %>',
+                text: '<%= message %>',
+                confirmButtonColor: '<%= messageType.equals("success") ? "#10B981" : "#EF4444" %>'
+            });
+        <% } %>
+
+        // Client-side form validation
+        document.getElementById('candidateForm').addEventListener('submit', function(event) {
+            const candidateName = document.querySelector('input[name="candidate_name"]').value.trim();
+            const partyName = document.querySelector('select[name="party_name"]').value;
+            const electionId = document.querySelector('select[name="election_id"]').value;
+
+            if (!candidateName) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: 'Candidate name cannot be empty'
+                });
+            }
+
+            if (!partyName) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: 'Please select a political party'
+                });
+            }
+
+            if (!electionId) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: 'Please select an election'
+                });
+            }
+        });
+    </script>
 </body>
 </html>

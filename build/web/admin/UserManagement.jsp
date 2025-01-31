@@ -14,6 +14,39 @@
             font-family: 'Poppins', sans-serif;
         }
     </style>
+    <script>
+        let userIdToDelete = null;
+
+        function openDeleteModal(userId) {
+            userIdToDelete = userId; // Store the userId to delete
+            document.getElementById('deleteUserModal').classList.remove('hidden'); // Show the modal
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteUserModal').classList.add('hidden'); // Hide the modal
+        }
+
+        function confirmDelete() {
+            if (userIdToDelete) {
+                window.location.href = 'deleteUser.jsp?userId=' + userIdToDelete; // Redirect to deleteUser.jsp with userId
+            }
+        }
+
+        function showMessage(title, message) {
+            const modal = document.getElementById('messageModal');
+            const messageTitle = document.getElementById('messageTitle');
+            const messageText = document.getElementById('messageText');
+
+            messageTitle.innerText = title;
+            messageText.innerText = message;
+
+            modal.classList.remove('hidden'); // Show the modal
+        }
+
+        function closeMessageModal() {
+            document.getElementById('messageModal').classList.add('hidden'); // Hide the modal
+        }
+    </script>
 </head>
 <body class="bg-gray-100 font-sans flex flex-col md:flex-row h-screen">
 
@@ -83,22 +116,25 @@
                     ResultSet rs = null;
                     try {
                         con = db_connector.getConnection();
-                        String query = "SELECT first_name, last_name, email FROM users";
+                        String query = "SELECT user_id, first_name, last_name, email FROM users";
                         pst = con.prepareStatement(query);
                         rs = pst.executeQuery();
 
                         while (rs.next()) {
                             String fullName = rs.getString("first_name") + " " + rs.getString("last_name");
                             String email = rs.getString("email");
+                            int userId = rs.getInt("user_id");
                 %>
                     <tr class="hover:bg-gray-50">
                         <td class="border border-gray-300 p-3"><%= fullName %></td>
                         <td class="border border-gray-300 p-3"><%= email %></td>
                         <td class="border border-gray-300 p-3">
-                            <form action="UserDetails.jsp" method="get">
+                            <form action="UserDetails.jsp" method="get" class="inline-block">
                                 <input type="hidden" name="email" value="<%= email %>">
                                 <button type="submit" class="px-3 py-1 bg-yellow-500 text-white rounded">View</button>
                             </form>
+                            <!-- Delete Button with modal -->
+                            <button type="button" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600" onclick="openDeleteModal(<%= userId %>)">Delete</button>
                         </td>
                     </tr>
                 <%
@@ -125,5 +161,29 @@
         </footer>
     </div>
   </div>
+
+  <!-- Delete User Confirmation Modal -->
+  <div id="deleteUserModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">Confirm Deletion</h2>
+        <p class="text-gray-600 mb-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+        <div class="flex justify-center space-x-4">
+            <!-- Confirm Deletion -->
+            <button onclick="confirmDelete()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Delete</button>
+            <!-- Cancel -->
+            <button onclick="closeDeleteModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded-md">Cancel</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- Message Modal -->
+  <div id="messageModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+        <h2 id="messageTitle" class="text-xl font-bold mb-4 text-gray-800"></h2>
+        <p id="messageText" class="text-gray-600 mb-4"></p>
+        <button onclick="closeMessageModal()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Close</button>
+    </div>
+  </div>
+
 </body>
 </html>

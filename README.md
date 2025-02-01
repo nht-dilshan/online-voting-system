@@ -8,7 +8,7 @@
 The Online Voting System is a secure web-based application that enables users to register, log in, and cast votes digitally. Admins can manage candidates and view voting results. This system is developed using HTML, JSP, and MySQL, focusing on data security, usability, and accurate vote tracking.
 
 <div align="center">
-  <img src="/api/placeholder/400/300" alt="Voting Interface" />
+  <img src="/img/homhomepage.png" alt="Voting Interface" />
 </div>
 
 ## Features

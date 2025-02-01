@@ -55,5 +55,5 @@ git clone https://github.com/nht-dilshan/online-voting-system.git
 
 3. **Direct Download**:
    If you prefer to download the project directly:
-   - [Download ZIP](https://drive.google.com/file/d/1LAa_ZLlEW39jjukPCGAyqUXD29SIOEji/view?usp=sharing)
+   - [Download ZIP](https://drive.google.com/file/d/18dpD8b8tgFBFuYVHqXL9VlqbGj3uF3Qa/view?usp=sharing)
  

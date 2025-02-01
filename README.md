@@ -45,7 +45,7 @@ To set up the Online Voting System locally, follow these steps:
 
 1. **Clone the Repository**:
 ```bash
-git clone https://github.com/yourusername/online-voting-system.git
+git clone https://github.com/nht-dilshan/online-voting-system.git
 ```
 
 2. **Download Dependencies**:

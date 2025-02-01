@@ -93,11 +93,14 @@
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
                             required>
                         <option value="">Select Political Party</option>
-                        <option value="Democratic Party">Democratic Party</option>
-                        <option value="Republican Party">Republican Party</option>
+                        <option value="National People's Power (NPP)">National People's Power (NPP)</option>
+                        <option value="Samagi Jana Balawegaya (SJB)">Samagi Jana Balawegaya (SJB)</option>
+                        <option value="Sri Lanka Podujana Peramuna (SLPP)">Sri Lanka Podujana Peramuna (SLPP)</option>
+                        <option value="New Democratic Front (NDF)">New Democratic Front (NDF)</option>
+                        <option value="Ilankai Tamil Arasu Kachchi (ITAK)">Ilankai Tamil Arasu Kachchi (ITAK)</option>
+                        <option value="Sri Lanka Muslim Congress (SLMC)">Sri Lanka Muslim Congress (SLMC)</option>
                         <option value="Independent">Independent</option>
-                        <option value="Green Party">Green Party</option>
-                        <option value="Libertarian Party">Libertarian Party</option>
+                        
                     </select>
                 </div>
 
@@ -122,7 +125,7 @@
                             ResultSet rs = null;
                             try {
                                 con = db_connector.getConnection();
-                                String query = "SELECT election_id, `election name` FROM elections ORDER BY election_date";
+                                String query = "SELECT election_id, `election name` FROM elections ORDER BY election_id"; // Ensure you're selecting the correct column name
                                 ps = con.prepareStatement(query);
                                 rs = ps.executeQuery();
                                 while (rs.next()) {

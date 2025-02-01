@@ -167,7 +167,7 @@
                     <h2 class="text-lg font-bold"><%= ongoingElectionName %></h2>
                     <p class="text-sm text-gray-500">Ongoing Election</p>
                     <% if (!ongoingElectionName.equals("No Ongoing Election")) { %>
-                        <a href="poll.jsp" class="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-lg inline-block text-center">
+                        <a href="votingArea.jsp" class="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-lg inline-block text-center">
                             Vote Now
                         </a>
                     <% } %>

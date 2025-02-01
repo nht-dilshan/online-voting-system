@@ -1,7 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.*"%>
-<%@page import="classes.db_connector"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.sql.*, classes.db_connector"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +34,8 @@
             <div class="p-8">
                 <%
                     String electionIdParam = request.getParameter("id");
+                    String message = "";
+                    String messageType = "";
                     if (electionIdParam == null || electionIdParam.isEmpty()) {
                         out.println("<h3 class='text-red-500'>No election ID provided.</h3>");
                         return;
@@ -72,10 +72,52 @@
                             e.printStackTrace();
                         }
                     }
+
+                    // Handling update submission
+                    if ("POST".equalsIgnoreCase(request.getMethod())) {
+                        electionName = request.getParameter("electionName");
+                        description = request.getParameter("description");
+
+                        if (electionName != null && !electionName.trim().isEmpty() && description != null && !description.trim().isEmpty()) {
+                            try {
+                                con = db_connector.getConnection();
+                                String updateQuery = "UPDATE elections SET `election name` = ?, description = ? WHERE election_id = ?";
+                                ps = con.prepareStatement(updateQuery);
+                                ps.setString(1, electionName);
+                                ps.setString(2, description);
+                                ps.setInt(3, electionId);
+
+                                int result = ps.executeUpdate();
+                                if (result > 0) {
+                                    message = "Election updated successfully!";
+                                    messageType = "success";
+                                } else {
+                                    message = "Failed to update election. Please try again.";
+                                    messageType = "error";
+                                }
+                            } catch (SQLException e) {
+                                message = "An error occurred: " + e.getMessage();
+                                messageType = "error";
+                            } finally {
+                                try { if (ps != null) ps.close(); } catch (SQLException e) { e.printStackTrace(); }
+                                try { if (con != null) con.close(); } catch (SQLException e) { e.printStackTrace(); }
+                            }
+                        } else {
+                            message = "All fields are required!";
+                            messageType = "error";
+                        }
+                    }
                 %>
 
+                <% if (!message.isEmpty()) { %>
+                    <div class="bg-<%= messageType.equals("success") ? "green" : "red" %>-50 border border-<%= messageType.equals("success") ? "green" : "red" %>-200 text-<%= messageType.equals("success") ? "green" : "red" %>-700 px-4 py-3 rounded relative mb-4" role="alert">
+                        <strong class="font-bold"><%= messageType.equals("success") ? "Success!" : "Error" %></strong>
+                        <span class="block sm:inline"><%= message %></span>
+                    </div>
+                <% } %>
+
                 <!-- Update Election Form -->
-                <form action="updateElectionProcess.jsp" method="post" class="space-y-6">
+                <form action="updateElection.jsp?id=<%= electionId %>" method="post" class="space-y-6">
                     <input type="hidden" name="electionId" value="<%= electionId %>">
                     
                     <!-- Election Name Field -->
@@ -105,13 +147,12 @@
 
                     <!-- Action Buttons -->
                     <div class="flex justify-between items-center">
-                        <button 
-                            type="button" 
-                            onclick="goBack()"
-                            class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-300"
-                        >
-                            Cancel
-                        </button>
+                         <a 
+                    href="electionmanagement.jsp" 
+                    class="text-gray-600 hover:text-emerald-600 transition duration-300"
+                >
+                    ← Back to Election Management
+                </a>
                         <input 
                             type="submit" 
                             value="Update Election" 

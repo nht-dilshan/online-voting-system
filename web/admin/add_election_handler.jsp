@@ -9,99 +9,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Election</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
-        <h1 class="text-2xl font-bold text-gray-800 mb-6">Add Election</h1>
 
-<%
-    // Define message variable
-    String message = "";
+    <div class="w-full max-w-2xl bg-white shadow-2xl rounded-xl overflow-hidden">
+        <div class="bg-emerald-600 text-white p-6">
+            <h1 class="text-3xl font-bold">Add New Election</h1>
+        </div>
 
-    // Check if form was submitted
-    if (request.getMethod().equalsIgnoreCase("POST")) {
-        // Get form data
-        String electionName = request.getParameter("electionName");
-        String description = request.getParameter("description");
+        <div class="p-8">
+            <% 
+                // Define message variable
+                String message = "";
 
-        // Database connection and query execution
-        Connection con = null;
-        PreparedStatement ps = null;
+                // Check if form was submitted
+                if (request.getMethod().equalsIgnoreCase("POST")) {
+                    // Get form data
+                    String electionName = request.getParameter("electionName");
+                    String description = request.getParameter("description");
 
-        try {
-            // Establish connection
-            con = db_connector.getConnection();
+                    // Database connection and query execution
+                    Connection con = null;
+                    PreparedStatement ps = null;
 
-            // SQL query to insert election data
-            String sql = "INSERT INTO elections (`election name`, description) VALUES (?, ?)";
-            ps = con.prepareStatement(sql);
+                    try {
+                        // Establish connection
+                        con = db_connector.getConnection();
 
-            // Set parameters
-            ps.setString(1, electionName);
-            ps.setString(2, description);
+                        // SQL query to insert election data
+                        String sql = "INSERT INTO elections (`election name`, description) VALUES (?, ?)";
+                        ps = con.prepareStatement(sql);
 
-            // Execute query
-            int result = ps.executeUpdate();
+                        // Set parameters
+                        ps.setString(1, electionName);
+                        ps.setString(2, description);
 
-            if (result > 0) {
-                message = "Election added successfully!";
-            } else {
-                message = "Failed to add election. Please try again.";
-            }
+                        // Execute query
+                        int result = ps.executeUpdate();
 
-        } catch (SQLException e) {
-            message = "An error occurred: " + e.getMessage();
-        } finally {
-            // Close resources
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                message += " Error closing database connection.";
-            }
-        }
-    }
-%>
+                        if (result > 0) {
+                            message = "Election added successfully!";
+                        } else {
+                            message = "Failed to add election. Please try again.";
+                        }
 
-        <% if (!message.isEmpty()) { %>
-            <p class="text-green-600 text-lg mb-4"><%= message %></p>
-        <% } %>
+                    } catch (SQLException e) {
+                        message = "An error occurred: " + e.getMessage();
+                    } finally {
+                        // Close resources
+                        try {
+                            if (ps != null) ps.close();
+                            if (con != null) con.close();
+                        } catch (SQLException e) {
+                            message += " Error closing database connection.";
+                        }
+                    }
+                }
+            %>
 
-        <form action="add_election_handler.jsp" method="POST" class="space-y-4">
-            <!-- Election Name -->
-            <div>
-                <label for="electionName" class="block text-sm font-medium text-gray-700">Election Name</label>
-                <input type="text" id="electionName" name="electionName" 
-                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                    placeholder="Enter election name" required>
-            </div>
+            <% if (!message.isEmpty()) { %>
+                <script>
+                    Swal.fire({
+                        icon: '<%= message.contains("success") ? "success" : "error" %>',
+                        title: '<%= message.contains("success") ? "Success!" : "Error" %>',
+                        text: '<%= message %>',
+                        confirmButtonColor: '<%= message.contains("success") ? "#10B981" : "#EF4444" %>'
+                    });
+                </script>
+            <% } %>
 
-            <!-- Description -->
-            <div>
-                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                <textarea id="description" name="description" rows="4" 
-                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                    placeholder="Enter a brief description of the election"></textarea>
-            </div>
+            <form action="add_election_handler.jsp" method="POST" class="space-y-6">
+                <!-- Election Name -->
+                <div>
+                    <label for="electionName" class="block text-gray-700 font-semibold mb-2">Election Name</label>
+                    <input type="text" id="electionName" name="electionName" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                        placeholder="Enter election name" required>
+                </div>
 
-            <!-- Buttons (Back + Submit) -->
-            <div class="flex justify-between">
-                <!-- Back Button -->
-                <button type="button" onclick="goBack()"
-                    class="px-4 py-2 bg-gray-400 text-white font-semibold rounded-md shadow hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">
-                    Back
-                </button>
+                <!-- Description -->
+                <div>
+                    <label for="description" class="block text-gray-700 font-semibold mb-2">Description</label>
+                    <textarea id="description" name="description" rows="4" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                        placeholder="Enter a brief description of the election"></textarea>
+                </div>
 
-                <!-- Submit Button -->
-                <button type="submit" 
-                    class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Add Election
-                </button>
-            </div>
-        </form>
+                <!-- Buttons (Back + Submit) -->
+                <div class="flex justify-between items-center">
+                    <!-- Back Button -->
+                    <a href="electionmanagement.jsp" class="text-emerald-600 hover:underline">Back to Election Management </a>
+
+                    <!-- Submit Button -->
+                    <button type="submit" 
+                        class="px-4 py-2 bg-emerald-600 text-white font-semibold rounded-md shadow hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        Add Election
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
+        // Redirect to election management page
         function goBack() {
             window.location.href = "electionmanagement.jsp"; // Redirect to election management page
         }

@@ -147,7 +147,7 @@
           <a href="update-profile.jsp" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 inline-block">
             Update Profile
           </a>
-          <a href="change-password.jsp" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 inline-block">
+          <a href="change-password-process.jsp" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 inline-block">
             Change Password
           </a>
         </div>

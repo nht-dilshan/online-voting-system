@@ -16,12 +16,12 @@
             int rowsAffected = pst.executeUpdate();
 
             if (rowsAffected > 0) {
-                response.sendRedirect("UserManagement.jsp?message=User deleted successfully"); // Redirect back to user management page after deletion
+                response.sendRedirect("UserManagement.jsp"); // Redirect back to user management page after deletion
             } else {
-                response.sendRedirect("UserManagement.jsp?error=User not found");
+                out.println("Error: User not found.");
             }
         } catch (SQLException e) {
-            response.sendRedirect("UserManagement.jsp?error=Database error: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             try {
                 if (pst != null) pst.close();
@@ -31,6 +31,6 @@
             }
         }
     } else {
-        response.sendRedirect("UserManagement.jsp?error=No user ID provided");
+        out.println("Error: No user ID provided.");
     }
 %>

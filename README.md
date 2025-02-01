@@ -52,4 +52,4 @@ git clone https://github.com/yourusername/online-voting-system.git
 3. **Direct Download**:
    If you prefer to download the project directly:
    - [Download ZIP](https://www.example.com/project-download)
-   - [Download Latest Release](https://www.example.com/latest-release)
+ 

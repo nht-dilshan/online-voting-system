@@ -49,9 +49,9 @@ git clone https://github.com/yourusername/online-voting-system.git
 ```
 
 2. **Download Dependencies**:
-   - [Download Java 8 JDK]([[https://www.example.com/java8](https://www.oracle.com/lk/java/technologies/javase/javase8-archive-downloads.html)])
-   - [Download NetBeans 8.2](https://drive.google.com/file/d/1Cvzy-IthXBr3zvseMs_SN7VGolWY5LnS/view?usp=sharing)
-   - [Download MySQL Server(XAMPP)]([https://www.oracle.com/lk/java/technologies/javase/javase8-archive-downloads.html])
+   - [Download Java 8 JDK](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
+   - [Download NetBeans 8.2](https://netbeans-ide.informer.com/8.2/)
+   - [Download XAMPP](https://www.apachefriends.org/download.html)
 
 3. **Direct Download**:
    If you prefer to download the project directly:
